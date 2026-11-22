@@ -21,10 +21,23 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-
 	checker = { enabled = true, notify = false },
+	opts = {
+		rocks = {
+			enabled = false,
+			hererocks = false,
+		},
+	},
 })
 
 vim.opt.clipboard = "unnamedplus"
 
 vim.keymap.set("n", "<Esc><Esc>", ":nohlsearch<CR>", { silent = true })
+
+local telescope = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", telescope.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", telescope.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", telescope.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", telescope.help_tags, { desc = "Telescope help tags" })
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
